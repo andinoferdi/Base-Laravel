@@ -46280,11 +46280,11 @@ label.rating-label:hover ~ .rating-label > .svg-icon svg:hover [fill]:not(.perma
 }
 
 .landing-dark-bg {
-  background-color: #13263C;
+  background-color: #181c32;
 }
 
 .landing-dark-color {
-  color: #13263C;
+  color: #181c32;
 }
 
 .landing-dark-border {
@@ -46791,10 +46791,10 @@ body {
 }
 .aside .hover-scroll-overlay-y {
   --scrollbar-space: 0.4rem;
-  scrollbar-color: #3b3b64 transparent;
+  scrollbar-color: #181c32transparent;
 }
 .aside .hover-scroll-overlay-y::-webkit-scrollbar-thumb {
-  background-color: #3b3b64;
+  background-color: #181c32;
 }
 .aside .hover-scroll-overlay-y:hover {
   scrollbar-color: #41416e transparent;

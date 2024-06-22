@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('error_application', function (Blueprint $table) {
-            $table->id('error_id');
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('module', 100);
             $table->string('controller', 100);

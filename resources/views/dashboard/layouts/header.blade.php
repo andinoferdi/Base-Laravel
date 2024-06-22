@@ -71,6 +71,26 @@
                              <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                                  class="menu-item menu-lg-down-accordion me-lg-1">
                                  <span
+                                     class="menu-link {{ request()->is('dashboard/aktivitas/user*') ? 'active' : '' }}  py-3">
+                                     <span class="menu-title">Aktivitas</span>
+                                     <span class="menu-arrow d-lg-none"></span>
+                                 </span>
+                                 <div
+                                     class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg py-lg-4 w-lg-225px">
+                                     <div class="menu-item">
+                                         <a class="menu-link py-3" href="/dashboard/aktivitas/user">
+                                             <span class="menu-bullet">
+                                                 <span class="bullet bullet-dot"></span>
+                                             </span>
+                                             <span class="menu-title">User</span>
+                                         </a>
+                                     </div>
+                                 </div>
+                             </div>
+
+                             <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
+                                 class="menu-item menu-lg-down-accordion me-lg-1">
+                                 <span
                                      class="menu-link {{ request()->is('dashboard/settings/profile*') ? 'active' : '' }}  py-3">
                                      <span class="menu-title">Settings</span>
                                      <span class="menu-arrow d-lg-none"></span>

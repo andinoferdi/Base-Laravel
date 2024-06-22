@@ -82,6 +82,22 @@
 
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Aktivitas</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->is('dashboard/aktivitas/user*') ? 'active' : '' }}"
+                        href="/dashboard/aktivitas/user">
+                        <span class="menu-icon">
+                            <i class="bi bi-stopwatch fs-3"></i>
+                        </span>
+                        <span class="menu-title">User</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Settings</span>
                     </div>
                 </div>

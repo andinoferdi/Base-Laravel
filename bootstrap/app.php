@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
           'admin' => \App\Http\Middleware\AdminMiddleware::class,
           'timezone' => \App\Http\Middleware\SetTimezone::class,
           'track.user' => \App\Http\Middleware\TrackUserStatus::class,
+          'log.activity' => \App\Http\Middleware\LogUserActivity::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

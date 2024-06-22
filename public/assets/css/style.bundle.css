@@ -47880,10 +47880,10 @@ label.rating-label:hover
     background: #50cd89;
 }
 .landing-dark-bg {
-    background-color: #13263c;
+    background-color: #181c32;
 }
 .landing-dark-color {
-    color: #13263c;
+    color: #181c32;
 }
 .landing-dark-border {
     border: 1px dashed #2c3f5b;
@@ -48581,10 +48581,10 @@ body {
 }
 .aside .hover-scroll-overlay-y {
     --scrollbar-space: 0.4rem;
-    scrollbar-color: #3b3b64 transparent;
+    scrollbar-color: #181c32transparent;
 }
 .aside .hover-scroll-overlay-y::-webkit-scrollbar-thumb {
-    background-color: #3b3b64;
+    background-color: #181c32;
 }
 .aside .hover-scroll-overlay-y:hover {
     scrollbar-color: #41416e transparent;

@@ -5,6 +5,7 @@ use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserActivityController;
 use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
@@ -43,7 +44,15 @@ Route::middleware(['auth', 'admin', 'timezone'])->group(function () {
 
         Route::get('/master/kecamatan', [KecamatanController::class, 'index'])->name('kecamatan');
 
-       Route::get('/settings/profile', [DashboardController::class, 'indexsettingsprofile'])->name('profile');
+        Route::get('/settings/profile', [DashboardController::class, 'indexsettingsprofile'])->name('profile');
         Route::put('/settings/profile/{user}', [DashboardController::class, 'updateprofile'])->name('profile.update');
+
+        // Route untuk menampilkan aktivitas pengguna
+        Route::get('/aktivitas/user', [UserActivityController::class, 'index'])->name('aktivitas');
+
+        // Route untuk mencatat aktivitas pengguna dengan middleware log.activity
+        Route::middleware(['log.activity'])->group(function () {
+            Route::post('/some-action', [UserActivityController::class, 'someAction']);
+        });
     });
 });

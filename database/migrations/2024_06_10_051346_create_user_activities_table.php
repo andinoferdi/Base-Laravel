@@ -11,8 +11,8 @@ return new class extends Migration
      */
    public function up()
     {
-        Schema::create('user_activity', function (Blueprint $table) {
-            $table->id('no_activity');
+        Schema::create('user_activities', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('diskripsi', 300);
             $table->string('status', 1);

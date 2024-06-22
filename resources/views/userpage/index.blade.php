@@ -2,13 +2,24 @@
 @section('content')
     <div class="d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
         <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
-            <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x mb-15">Ini adalah tampilan user
-                <br />Silahkan
-                <span
-                    style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
-                    <span id="kt_landing_hero_text">Login</span>
-                </span>
-            </h1>
+            @auth
+                <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x mb-15">Anda sudah login mari jelajahi website kami jika
+                    dirasa sudah cukup
+                    <br />Silahkan
+                    <span
+                        style="background: linear-gradient(to right, #fd0000 0%, #ee3d1e 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                        <span id="kt_landing_hero_text">Logout</span>
+                    </span>
+                </h1>
+            @else
+                <h1 class="text-white lh-base fw-bolder fs-2x fs-lg-3x mb-15">Ini adalah tampilan user
+                    <br />Silahkan
+                    <span
+                        style="background: linear-gradient(to right, #0083fd 0%, #00c1fc 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                        <span id="kt_landing_hero_text">Login</span>
+                    </span>
+                </h1>
+            @endauth
         </div>
     </div>
     </div>
@@ -218,9 +229,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 @endsection

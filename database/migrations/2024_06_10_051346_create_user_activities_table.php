@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('diskripsi', 300);
-            $table->string('status', 1);
+            $table->string('status', 8);
             $table->timestamp('stand')->useCurrent();
             $table->string('delete_mark', 1)->default('N');
             $table->timestamps();

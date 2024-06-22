@@ -115,22 +115,14 @@
                 </div>
 
                 <div class="row gy-5 g-xl-8">
-                    <!--begin::Col-->
                     <div class="col-xxl-4">
-                        <!--begin::Mixed Widget 2-->
                         <div class="card card-xxl-stretch">
-                            <!--begin::Header-->
                             <div class="card-header border-0 bg-danger py-5">
                                 <h3 class="card-title fw-bolder text-white">Widget</h3>
                             </div>
-                            <!--end::Header-->
-                            <!--begin::Body-->
                             <div class="card-body p-0">
-                                <!--begin::Chart-->
                                 <div class="mixed-widget-2-chart card-rounded-bottom bg-danger" data-kt-color="danger"
                                     style="height: 200px"></div>
-                                <!--end::Chart-->
-                                <!--begin::Stats-->
                                 <div class="card-p mt-n20 position-relative">
                                     <!--begin::Row-->
                                     <div class="row g-0">
@@ -144,36 +136,28 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <a href="/dashboard/master/user" class="text-warning fw-bold fs-6">Menu User</a>
+                                            <a href="/dashboard/master/satuan" class="text-warning fw-bold fs-6">Master
+                                                Satuan</a>
                                         </div>
 
-                                        <!--end::Col-->
-                                        <!--begin::Col-->
-                                        <div class="col bg-light-primary px-6 py-8 rounded-2 mb-7">
-                                            <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
-                                            <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
+                                        <div class="col bg-light-danger px-6 py-8 rounded-2 mb-7">
+                                            <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path opacity="0.3"
-                                                        d="M20 15H4C2.9 15 2 14.1 2 13V7C2 6.4 2.4 6 3 6H21C21.6 6 22 6.4 22 7V13C22 14.1 21.1 15 20 15ZM13 12H11C10.5 12 10 12.4 10 13V16C10 16.5 10.4 17 11 17H13C13.6 17 14 16.6 14 16V13C14 12.4 13.6 12 13 12Z"
-                                                        fill="black" />
-                                                    <path
-                                                        d="M14 6V5H10V6H8V5C8 3.9 8.9 3 10 3H14C15.1 3 16 3.9 16 5V6H14ZM20 15H14V16C14 16.6 13.5 17 13 17H11C10.5 17 10 16.6 10 16V15H4C3.6 15 3.3 14.9 3 14.7V18C3 19.1 3.9 20 5 20H19C20.1 20 21 19.1 21 18V14.7C20.7 14.9 20.4 15 20 15Z"
-                                                        fill="black" />
+                                                    <path fill="#FF4842" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 14.293c-.448 0-.809-.367-.809-.817s.361-.817.809-.817c.448 0 .809.367.809.817s-.361.817-.809.817zm-.898-5.672c-.107 0-.187.026-.267.068-.08.041-.155.1-.232.177-.18.18-.327.416-.444.668-.116.25-.189.532-.189.873 0 .342.073.624.19.873.116.252.263.488.444.668.077.077.152.136.232.177.08.042.16.068.267.068.107 0 .187-.026.267-.068.08-.041.155-.1.232-.177.18-.18.327-.416.444-.668.116-.249.189-.531.189-.873 0-.342-.073-.624-.19-.873-.117-.252-.264-.488-.444-.668-.077-.077-.152-.136-.232-.177-.08-.042-.16-.068-.267-.068z" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
-                                            <a href="#" class="text-primary fw-bold fs-6">New
-                                                Projects</a>
+                                            <a href="/dashboard/aktivitas/error_aplikasi"
+                                                class="text-danger fw-bold fs-6">Error aplikasi</a>
                                         </div>
-                                        <!--end::Col-->
                                     </div>
                                     <!--end::Row-->
                                     <!--begin::Row-->
                                     <div class="row g-0">
                                         <!--begin::Col-->
-                                        <div class="col bg-light-danger px-6 py-8 rounded-2 me-7 mb-7">
-                                            <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
+                                        <div class="col bg-light-primary px-6 py-8 rounded-2 me-7 mb-7">
+                                            <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <path
@@ -181,7 +165,7 @@
                                                         fill="black" />
                                                 </svg>
                                             </span>
-                                            <a href="/dashboard/master/user" class="text-danger fw-bold fs-6">Master
+                                            <a href="/dashboard/master/user" class="text-primary fw-bold fs-6">Master
                                                 User</a>
                                         </div>
 
@@ -201,8 +185,8 @@
                                                 </svg>
                                             </span>
                                             <!--end::Svg Icon-->
-                                            <a href="#" class="text-success fw-bold fs-6 mt-2">Error
-                                                Aplikasi</a>
+                                            <a href="/dashboard/menu/create" class="text-success fw-bold fs-6 mt-2">Create
+                                                Menu</a>
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -244,7 +228,10 @@
                                                     <th scope="row">{{ ++$i }}</th>
                                                     <td>{{ $activity->user->name }}</td> <!-- Menampilkan nama pengguna -->
                                                     <td>{{ $activity->diskripsi }}</td>
-                                                    <td>{{ $activity->status }}</td>
+                                                    <td
+                                                        class="{{ $activity->status == 'Online' ? 'text-primary' : ($activity->status == 'Offline' ? 'text-danger' : 'text-success') }}">
+                                                        {{ $activity->status }}
+                                                    </td>
                                                     <td>{{ $activity->stand }}</td>
                                                 </tr>
                                             @endforeach

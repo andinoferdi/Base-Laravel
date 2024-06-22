@@ -16,7 +16,7 @@ class LogUserActivity
         if (Auth::check()) {
             $userId = Auth::id();
             $description = 'User mengakses URL: ' . $request->url();
-            $status = 'A'; // Contoh status, bisa disesuaikan dengan kebutuhan
+            $status = 'Online'; // Contoh status, bisa disesuaikan dengan kebutuhan
 
             // Log aktivitas
             UserActivityController::logActivityStatic($userId, $description, $status);

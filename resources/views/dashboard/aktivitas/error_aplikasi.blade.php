@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.main', ['title' => 'Aktivitas User -'])
+@extends('dashboard.layouts.main', ['title' => 'Error Aplikasi -'])
 @section('container')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="toolbar" id="kt_toolbar">
@@ -8,7 +8,7 @@
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                     <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Dashboard
                         <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
-                        <small class="text-muted fs-7 fw-bold my-1 ms-1">Aktivitas</small>
+                        <small class="text-muted fs-7 fw-bold my-1 ms-1">Error Aplikasi</small>
                     </h1>
                 </div>
             </div>
@@ -17,7 +17,7 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header" style="margin-top: 40px;">
-                        <h2>Aktivitas</h2>
+                        <h2>Error Aplikasi</h2>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -26,23 +26,28 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama User</th>
-                                        <th scope="col">Deskripsi</th>
+                                        <th scope="col">Modul</th>
+                                        <th scope="col">Kontroler</th>
+                                        <th scope="col">Fungsi</th>
+                                        <th scope="col">Pesan Error</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Waktu</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $i = 0; @endphp
-                                    @foreach ($activities as $activity)
+                                    @foreach ($errors as $error)
                                         <tr>
                                             <th scope="row">{{ ++$i }}</th>
-                                            <td>{{ $activity->user->name }}</td> <!-- Menampilkan nama pengguna -->
-                                            <td>{{ $activity->diskripsi }}</td>
-                                            <td
-                                                class="{{ $activity->status == 'Online' ? 'text-primary' : ($activity->status == 'Offline' ? 'text-danger' : 'text-success') }}">
-                                                {{ $activity->status }}
+                                            <td>{{ $error->user->name }}</td>
+                                            <td>{{ $error->module }}</td>
+                                            <td>{{ $error->controller }}</td>
+                                            <td>{{ $error->function }}</td>
+                                            <td>{{ $error->error_message }}</td>
+                                            <td class="{{ $error->status == '1' ? 'text-danger' : 'text-success' }}">
+                                                {{ $error->status == '1' ? 'Error' : 'Resolved' }}
                                             </td>
-                                            <td>{{ $activity->stand }}</td>
+                                            <td>{{ $error->create_time }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

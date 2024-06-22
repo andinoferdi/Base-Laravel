@@ -20,15 +20,14 @@
         </div>
     </div>
     <div class="aside-menu flex-column-fluid">
-
         <div class="hover-scroll-overlay-y my-2 py-5 py-lg-8" id="kt_aside_menu_wrapper" data-kt-scroll="true"
             data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto"
             data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu"
             data-kt-scroll-offset="0">
-
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                 id="#kt_aside_menu" data-kt-menu="true">
 
+                <!-- Dashboard Section -->
                 <div class="menu-item">
                     <div class="menu-content pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Dashboard</span>
@@ -44,6 +43,24 @@
                     </a>
                 </div>
 
+                <!-- Polosan Section -->
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Polosan</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->is('dashboard/polosan*') ? 'active' : '' }}"
+                        href="/dashboard/polosan">
+                        <span class="menu-icon">
+                            <i class="bi bi-tablet fs-3"></i>
+                        </span>
+                        <span class="menu-title">Polosan</span>
+                    </a>
+                </div>
+
+                <!-- Master Section -->
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Master</span>
@@ -80,6 +97,7 @@
                     </a>
                 </div>
 
+                <!-- Aktivitas Section -->
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Aktivitas</span>
@@ -97,6 +115,17 @@
                 </div>
 
                 <div class="menu-item">
+                    <a class="menu-link {{ request()->is('dashboard/aktivitas/error_aplikasi*') ? 'active' : '' }}"
+                        href="/dashboard/aktivitas/error_aplikasi">
+                        <span class="menu-icon">
+                            <i class="bi bi-exclamation-octagon fs-3"></i>
+                        </span>
+                        <span class="menu-title">Error Aplikasi</span>
+                    </a>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Settings</span>
                     </div>
@@ -111,6 +140,35 @@
                         <span class="menu-title">Profile</span>
                     </a>
                 </div>
+
+                <!-- Dynamic Menus Section -->
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Dynamic Menus</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->is('dashboard/master/menu*') ? 'active' : '' }}"
+                        href="/dashboard/master/menu">
+                        <span class="menu-icon">
+                            <i class="bi bi-plus-square fs-3"></i>
+                        </span>
+                        <span class="menu-title">Tambah Menu</span>
+                    </a>
+                </div>
+
+                @foreach (App\Models\Menu::all() as $menu)
+                    <div class="menu-item">
+                        <a class="menu-link {{ request()->is('dashboard/' . $menu->slug . '*') ? 'active' : '' }}"
+                            href="/dashboard/{{ $menu->slug }}">
+                            <span class="menu-icon">
+                                <i class="{{ $menu->icon ?? 'bi bi-folder' }} fs-3"></i>
+                            </span>
+                            <span class="menu-title">{{ $menu->name }}</span>
+                        </a>
+                    </div>
+                @endforeach
 
             </div>
         </div>

@@ -37,7 +37,6 @@
                                         <th scope="col">Dibuat Pada</th>
                                         <th scope="col">DiUpdate Oleh</th>
                                         <th scope="col">DiUpdate Pada</th>
-                                        <th scope="col">Status User</th>
                                         <th scope="col">Role</th>
                                         <th scope="col" style="width: 1%; white-space: nowrap; text-align: right;">Aksi
                                         </th>
@@ -57,7 +56,6 @@
                                             <td>{{ $user->create_date }}</td>
                                             <td>{{ $user->update_by }}</td>
                                             <td>{{ $user->update_date }}</td>
-                                            <td>{{ $user->status_user }}</td>
                                             <td>
                                                 <a
                                                     class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 {{ $user->is_admin ? 'btn-primary' : 'btn-success' }}">

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->string('wa')->nullable();
             $table->string('pin', 6)->nullable();
-            $table->boolean('status_user')->default(false);
             $table->string('delete_mark', 1)->nullable();
             $table->string('create_by', 30)->nullable();
             $table->string('update_by', 30)->nullable();

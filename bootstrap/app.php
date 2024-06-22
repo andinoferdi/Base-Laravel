@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
           'timezone' => \App\Http\Middleware\SetTimezone::class,
           'track.user' => \App\Http\Middleware\TrackUserStatus::class,
           'log.activity' => \App\Http\Middleware\LogUserActivity::class,
+          'log.error' => \App\Http\Middleware\LogApplicationError::class, // Tambahkan middleware ini
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

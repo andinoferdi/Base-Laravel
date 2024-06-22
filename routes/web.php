@@ -3,9 +3,12 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\PolosanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserActivityController;
+use App\Http\Controllers\ErrorApplicationController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
@@ -20,9 +23,13 @@ Route::get('/', function () {
 })->name('userpage');
 
 // Dashboard and Protected Routes with Timezone Middleware
-Route::middleware(['auth', 'admin', 'timezone'])->group(function () {
+Route::middleware(['auth', 'admin', 'timezone', 'log.error'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('/polosan', [PolosanController::class, 'index'])->name('polosan');
+
+
 
         Route::resource('/master/satuan', SatuanController::class)->names([
             'index' => 'satuan',
@@ -50,10 +57,23 @@ Route::middleware(['auth', 'admin', 'timezone'])->group(function () {
         // Route untuk menampilkan aktivitas pengguna
         Route::get('/aktivitas/user', [UserActivityController::class, 'index'])->name('aktivitas');
 
+
         // Route untuk mencatat aktivitas pengguna dengan middleware log.activity
         Route::middleware(['log.activity'])->group(function () {
             Route::post('/some-action', [UserActivityController::class, 'someAction']);
         });
+
+          Route::get('/aktivitas/error_aplikasi', [ErrorApplicationController::class, 'index'])->name('aktivitas.error');
+
+          Route::resource('/master/menu', MenuController::class)->names([
+            'index' => 'menu',
+            'create' => 'menu.create',
+            'store' => 'menu.store',
+            'edit' => 'menu.edit',
+            'update' => 'menu.update',
+            'destroy' => 'menu.destroy',
+        ])->middleware('log.activity');
+        Route::get('/{menu}', [MenuController::class, 'showDynamicMenu'])->name('dynamic.menu');
+
     });
 });
-

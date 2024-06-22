@@ -22,7 +22,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            UserActivityController::logActivityStatic(Auth::id(), 'User telah Login', 'A');
+            UserActivityController::logActivityStatic(Auth::id(), 'User telah Login', 'Online');
             Alert::success('Login Berhasil', 'Selamat datang kembali!');
             return redirect()->intended('dashboard');
         }
@@ -46,7 +46,7 @@ class LoginController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        UserActivityController::logActivityStatic($user->id, 'User telah registrasi', 'A');
+        UserActivityController::logActivityStatic($user->id, 'User telah registrasi', 'Online');
         Alert::success('Registrasi Berhasil', 'Silakan login untuk melanjutkan');
 
         return redirect()->route('login');
@@ -54,7 +54,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        UserActivityController::logActivityStatic(Auth::id(), 'User telah Logout', 'A');
+        UserActivityController::logActivityStatic(Auth::id(), 'User telah Logout', 'Offline');
         Auth::logout();
         return redirect()->route('userpage');
     }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationEmail;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\User;
+use App\Http\Controllers\UserActivityController;
 
 class LoginController extends Controller
 {
@@ -21,6 +22,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            UserActivityController::logActivityStatic(Auth::id(), 'User telah Login', 'A');
             Alert::success('Login Berhasil', 'Selamat datang kembali!');
             return redirect()->intended('dashboard');
         }
@@ -44,14 +46,17 @@ class LoginController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        UserActivityController::logActivityStatic($user->id, 'User telah registrasi', 'A');
         Alert::success('Registrasi Berhasil', 'Silakan login untuk melanjutkan');
 
         return redirect()->route('login');
     }
+
     public function logout()
     {
+        UserActivityController::logActivityStatic(Auth::id(), 'User telah Logout', 'A');
         Auth::logout();
-
         return redirect()->route('userpage');
     }
 }
+

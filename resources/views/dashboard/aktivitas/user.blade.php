@@ -25,7 +25,7 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama Pengguna</th>
+                                        <th scope="col">Nama User</th>
                                         <th scope="col">Deskripsi</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Waktu</th>

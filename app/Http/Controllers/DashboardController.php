@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserActivity;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 class DashboardController extends Controller
 {
     public function index(Request $request)
 
     {
+        $activities = UserActivity::with('user')->get(); // Mengambil semua data aktivitas beserta data user
         $users = User::all();
-     return view('dashboard.index', compact('users'));
+     return view('dashboard.index', compact('users','activities'));
     }
 
      public function indexsettingsprofile(Request $request)

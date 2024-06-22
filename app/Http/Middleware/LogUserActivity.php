@@ -4,25 +4,25 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserActivityController;
 
 class LogUserActivity
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
 
-        // Contoh logika untuk mencatat aktivitas setelah request diproses
-        $controller = new UserActivityController();
-        $controller->logActivity('User mengakses URL: ' . $request->url(), 'A');
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $description = 'User mengakses URL: ' . $request->url();
+            $status = 'A'; // Contoh status, bisa disesuaikan dengan kebutuhan
+
+            // Log aktivitas
+            UserActivityController::logActivityStatic($userId, $description, $status);
+        }
 
         return $response;
     }
 }
+

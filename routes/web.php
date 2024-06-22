@@ -31,7 +31,7 @@ Route::middleware(['auth', 'admin', 'timezone'])->group(function () {
             'edit' => 'satuan.edit',
             'update' => 'satuan.update',
             'destroy' => 'satuan.destroy',
-        ]);
+        ])->middleware('log.activity');
 
         Route::resource('/master/user', UserController::class)->names([
             'index' => 'user',
@@ -40,12 +40,12 @@ Route::middleware(['auth', 'admin', 'timezone'])->group(function () {
             'edit' => 'user.edit',
             'update' => 'user.update',
             'destroy' => 'user.destroy',
-        ]);
+        ])->middleware('log.activity');
 
-        Route::get('/master/kecamatan', [KecamatanController::class, 'index'])->name('kecamatan');
+        Route::get('/master/kecamatan', [KecamatanController::class, 'index'])->name('kecamatan')->middleware('log.activity');
 
-        Route::get('/settings/profile', [DashboardController::class, 'indexsettingsprofile'])->name('profile');
-        Route::put('/settings/profile/{user}', [DashboardController::class, 'updateprofile'])->name('profile.update');
+        Route::get('/settings/profile', [DashboardController::class, 'indexsettingsprofile'])->name('profile')->middleware('log.activity');
+        Route::put('/settings/profile/{user}', [DashboardController::class, 'updateprofile'])->name('profile.update')->middleware('log.activity');
 
         // Route untuk menampilkan aktivitas pengguna
         Route::get('/aktivitas/user', [UserActivityController::class, 'index'])->name('aktivitas');
@@ -56,3 +56,4 @@ Route::middleware(['auth', 'admin', 'timezone'])->group(function () {
         });
     });
 });
+

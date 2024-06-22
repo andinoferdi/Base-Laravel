@@ -71,7 +71,7 @@
                              <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                                  class="menu-item menu-lg-down-accordion me-lg-1">
                                  <span
-                                     class="menu-link {{ request()->is('dashboard/aktivitas/user*') ? 'active' : '' }}  py-3">
+                                     class="menu-link {{ request()->is('dashboard/aktivitas/user*') || request()->is('dashboard/aktivitas/error_aplikasi*') ? 'active' : '' }}  py-3">
                                      <span class="menu-title">Aktivitas</span>
                                      <span class="menu-arrow d-lg-none"></span>
                                  </span>
@@ -85,8 +85,19 @@
                                              <span class="menu-title">User</span>
                                          </a>
                                      </div>
+
+                                     <div class="menu-item">
+                                         <a class="menu-link py-3" href="/dashboard/aktivitas/error_aplikasi">
+                                             <span class="menu-bullet">
+                                                 <span class="bullet bullet-dot"></span>
+                                             </span>
+                                             <span class="menu-title">Error Aplikasi</span>
+                                         </a>
+                                     </div>
+
                                  </div>
                              </div>
+
 
                              <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                                  class="menu-item menu-lg-down-accordion me-lg-1">

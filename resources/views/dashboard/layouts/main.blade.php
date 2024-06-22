@@ -3,7 +3,7 @@
 
 <head>
     <base href="">
-    <title>{{ @$title }} Dashboard - Metronic </title>>
+    <title>{{ @$title }} Dashboard - Metronic </title>
     <meta name="description"
         content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
     <meta name="keywords"
@@ -45,6 +45,7 @@
     <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
     <script src="{{ asset('assets/js/custom/modals/create-app.js') }}"></script>
     <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js') }}"></script>
+
 </body>
 
 </html>

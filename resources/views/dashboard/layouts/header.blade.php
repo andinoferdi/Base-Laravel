@@ -27,6 +27,7 @@
                                      <span class="menu-title">Dashboard</span>
                                  </a>
                              </div>
+
                              <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                                  class="menu-item menu-lg-down-accordion me-lg-1">
                                  <span
@@ -66,6 +67,27 @@
 
                                  </div>
                              </div>
+
+                             <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
+                                 class="menu-item menu-lg-down-accordion me-lg-1">
+                                 <span
+                                     class="menu-link {{ request()->is('dashboard/settings/profile*') ? 'active' : '' }}  py-3">
+                                     <span class="menu-title">Settings</span>
+                                     <span class="menu-arrow d-lg-none"></span>
+                                 </span>
+                                 <div
+                                     class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg py-lg-4 w-lg-225px">
+                                     <div class="menu-item">
+                                         <a class="menu-link py-3" href="/dashboard/settings/profile">
+                                             <span class="menu-bullet">
+                                                 <span class="bullet bullet-dot"></span>
+                                             </span>
+                                             <span class="menu-title">Profile</span>
+                                         </a>
+                                     </div>
+
+                                 </div>
+                             </div>
                          </div>
                      </div>
                  </div>
@@ -76,36 +98,35 @@
                              <div class="topbar-item cursor-pointer symbol px-3 px-lg-5 me-n3 me-lg-n5 symbol-30px symbol-md-35px"
                                  data-kt-menu-trigger="click" data-kt-menu-attach="parent"
                                  data-kt-menu-placement="bottom-end" data-kt-menu-flip="bottom">
-                                 <img src="{{ asset('assets/media/avatars/150-2.jpg') }}" alt="metronic" />
+                                 <img
+                                     src="{{ isset(auth()->user()->foto) ? asset('storage/' . auth()->user()->foto) : asset('assets/media/avatars/blank.png') }}">
                              </div>
                              <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
                                  data-kt-menu="true">
                                  <div class="menu-item px-3">
                                      <div class="menu-content d-flex align-items-center px-3">
                                          <div class="symbol symbol-50px me-5">
-                                             <img alt="Logo" src="{{ asset('assets/media/avatars/150-26.jpg') }}" />
+                                             <img alt="Logo"
+                                                 src="{{ isset(auth()->user()->foto) ? asset('storage/' . auth()->user()->foto) : asset('assets/media/avatars/blank.png') }}" />
                                          </div>
                                          <div class="d-flex flex-column">
-                                             <div class="fw-bolder d-flex align-items-center fs-5">{{ $user->name }}
-                                                 <span
-                                                     class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
+                                             <div class="fw-bolder d-flex align-items-center fs-5">
+                                                 {{ auth()->user()->name }}
                                              </div>
                                              <a href="#"
-                                                 class="fw-bold text-muted text-hover-primary fs-7">{{ $user->email }}</a>
+                                                 class="fw-bold text-muted text-hover-primary fs-7">{{ auth()->user()->email }}</a>
                                          </div>
                                      </div>
                                  </div>
                                  <div class="separator my-2"></div>
                                  <div class="menu-item px-5">
-                                     <a href="../../demo13/dist/account/overview.html" class="menu-link px-5">My
+                                     <a href="/dashboard/settings/profile" class="menu-link px-5">My
                                          Profile</a>
                                  </div>
                                  <div class="separator my-2"></div>
                                  <div class="menu-item px-5">
-                                     <!-- Form Logout -->
                                      <form id="logout-form" action="/logout" method="post">
                                          @csrf
-                                         <!-- Tombol Logout yang terlihat seperti link -->
                                          <a href="#" class="menu-link px-5"
                                              onclick="document.getElementById('logout-form').submit(); return false;">Log
                                              Out</a>

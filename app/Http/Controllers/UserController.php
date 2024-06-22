@@ -23,46 +23,45 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'no_hp' => 'nullable|string|max:15',
-            'wa' => 'nullable|string|max:15',
-            'pin' => 'nullable|string|max:6',
-            'password' => 'required|string|min:8',
-            'is_admin' => 'required|boolean',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'no_hp' => 'nullable|string|max:15',
+        'wa' => 'nullable|string|max:15',
+        'pin' => 'nullable|string|max:6',
+        'password' => 'required|string|min:8',
+        'is_admin' => 'required|boolean',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        $fotoPath = $request->file('foto') ? $request->file('foto')->store('fotos', 'public') : null;
+    $fotoPath = $request->file('foto') ? $request->file('foto')->store('fotos', 'public') : 'assets/media/avatars/blank.png';
 
-        $user = new User([
-            'name' => $request->name,
-            'email' => $request->email,
-            'no_hp' => $request->no_hp,
-            'wa' => $request->wa,
-            'pin' => $request->pin,
-            'password' => bcrypt($request->password),
-            'is_admin' => $request->is_admin,
-            'foto' => $fotoPath,
-        ]);
+    $user = new User([
+        'name' => $request->name,
+        'email' => $request->email,
+        'no_hp' => $request->no_hp,
+        'wa' => $request->wa,
+        'pin' => $request->pin,
+        'password' => bcrypt($request->password),
+        'is_admin' => $request->is_admin,
+        'foto' => $fotoPath,
+    ]);
 
-        $user->create_by = auth()->user() ? auth()->user()->name : 'system';
-        $user->create_date = now('Asia/Jakarta');
-        $user->status_user = false; // default value for status_user
-        $user->save();
+    $user->create_by = auth()->user() ? auth()->user()->name : 'system';
+    $user->create_date = now('Asia/Jakarta');
+    $user->status_user = false; // default value for status_user
+    $user->save();
 
-        return redirect()->route('user')
-            ->with('success', 'User created successfully.');
-    }
-
+    return redirect()->route('user')
+        ->with('success', 'User created successfully.');
+}
     public function edit(User $user)
     {
         return view('dashboard.user.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+   public function update(Request $request, User $user)
 {
     $request->validate([
         'name' => 'required',
@@ -75,13 +74,17 @@ class UserController extends Controller
         'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
-    if ($request->file('foto')) {
+    if ($request->has('avatar_remove') && $request->avatar_remove == "1") {
+        if ($user->foto) {
+            Storage::disk('public')->delete($user->foto);
+        }
+        $user->foto = 'assets/media/avatars/blank.png';
+    } elseif ($request->file('foto')) {
         if ($user->foto) {
             Storage::disk('public')->delete($user->foto);
         }
         $fotoPath = $request->file('foto')->store('fotos', 'public');
-    } else {
-        $fotoPath = $user->foto;
+        $user->foto = $fotoPath;
     }
 
     $user->update([
@@ -92,7 +95,7 @@ class UserController extends Controller
         'pin' => $request->pin,
         'password' => $request->password ? bcrypt($request->password) : $user->password,
         'is_admin' => $request->is_admin,
-        'foto' => $fotoPath,
+        'foto' => $user->foto,
         'update_by' => auth()->user() ? auth()->user()->name : 'system',
         'update_date' => now('Asia/Jakarta'),
     ]);

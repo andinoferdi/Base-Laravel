@@ -23,7 +23,6 @@
                        <div class="card-body">
                            <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                                @csrf
-                               <!-- Existing fields -->
                                <div class="row">
                                    <div class="col-md-6 form-group">
                                        <label for="name">Nama User:</label>
@@ -32,14 +31,14 @@
                                    </div>
                                    <div class="col-md-6 form-group">
                                        <label for="email">Email:</label>
-                                       <input type="text" class="form-control" id="email" name="email"
+                                       <input type="email" class="form-control" id="email" name="email"
                                            autocomplete="off">
                                    </div>
                                </div>
                                <div class="row">
                                    <div class="col-md-6 form-group">
                                        <label for="password">Password:</label>
-                                       <input type="text" class="form-control" id="password" name="password"
+                                       <input type="password" class="form-control" id="password" name="password"
                                            autocomplete="off">
                                    </div>
                                    <div class="col-md-6 form-group">
@@ -60,17 +59,45 @@
                                            autocomplete="off">
                                    </div>
                                </div>
-                               <div class="form-group">
-                                   <label for="foto">Foto:</label>
-                                   <input type="file" class="form-control" id="foto" name="foto">
-                               </div>
-                               <div class="form-group text-center"
-                                   style="max-width: 400px; margin: 0 auto; margin-top: 20px;">
-                                   <label for="is_admin">Role:</label>
-                                   <select class="form-control" id="is_admin" name="is_admin">
-                                       <option value="0">User</option>
-                                       <option value="1">Admin</option>
-                                   </select>
+                               <div class="row">
+                                   <div class="col-md-6 form-group">
+                                       <label for="foto">Foto:</label>
+                                       <div class="col-lg-8">
+                                           <div class="image-input image-input-outline" data-kt-image-input="true">
+                                               <div class="image-input-wrapper w-125px h-125px"
+                                                   style="background-image: url('{{ asset('assets/media/avatars/blank.png') }}')">
+                                               </div>
+                                               <label
+                                                   class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                   data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                   title="Change avatar">
+                                                   <i class="bi bi-pencil-fill fs-7"></i>
+                                                   <input type="file" name="foto" accept=".png, .jpg, .jpeg" />
+                                                   <input type="hidden" name="avatar_remove" />
+                                               </label>
+                                               <span
+                                                   class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                   data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                   title="Cancel avatar">
+                                                   <i class="bi bi-x fs-2"></i>
+                                               </span>
+                                               <span
+                                                   class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                   data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                   title="Remove avatar">
+                                                   <i class="bi bi-x fs-2"></i>
+                                               </span>
+                                           </div>
+                                           <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                       </div>
+                                   </div>
+                                   <div class="col-md-6 form-group">
+                                       <label for="is_admin">Role:</label>
+                                       <select class="form-control" id="is_admin" name="is_admin">
+                                           <option value="0">User</option>
+                                           <option value="1">Admin</option>
+                                       </select>
+                                   </div>
                                </div>
                                <button type="submit" class="btn btn-primary mt-3">
                                    <i class="fa fa-save"></i> Submit

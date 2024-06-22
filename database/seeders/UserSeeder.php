@@ -17,6 +17,14 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
-        User::create(['name' => 'Administrator', 'email' => 'admin@admin', 'password' => bcrypt('admin@admin') , 'no_hp' => '081359528944' , 'wa' => '081359528944' , 'pin' => 'PIN' ,'is_admin' => true]);
+        User::create([
+            'name' => 'Administrator',
+            'email' => 'admin@admin',
+            'password' => bcrypt('admin@admin'),
+            'no_hp' => '081359528944',
+            'wa' => '081359528944',
+            'pin' => 'PIN',
+            'is_admin' => true,
+        ]);
     }
 }

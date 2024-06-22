@@ -58,7 +58,12 @@
                                             <td>{{ $user->update_by }}</td>
                                             <td>{{ $user->update_date }}</td>
                                             <td>{{ $user->status_user }}</td>
-                                            <td>{{ $user->is_admin ? 'Admin' : 'User' }}</td>
+                                            <td>
+                                                <a
+                                                    class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 {{ $user->is_admin ? 'btn-primary' : 'btn-success' }}">
+                                                    {{ $user->is_admin ? 'Admin' : 'User' }}
+                                                </a>
+                                            </td>
                                             <td
                                                 style="text-align: right; display: flex; justify-content: flex-end; gap: 10px;">
                                                 <!-- Edit Button -->

@@ -57,7 +57,8 @@
                                                     <td>
                                                         <div class="d-flex align-items-center">
                                                             <div class="symbol symbol-45px me-5">
-                                                                <img src="assets/media/avatars/150-11.jpg" alt="" />
+                                                                <img
+                                                                    src="{{ isset($user->foto) ? asset('storage/' . $user->foto) : asset('assets/media/avatars/blank.png') }}" />
                                                             </div>
 
                                                         </div>
@@ -89,7 +90,11 @@
                                                         <div class="d-flex flex-column w-100 me-2">
                                                             <div class="d-flex flex-stack mb-2">
                                                                 <span
-                                                                    class="text-dark fw-bolder text-hover-primary d-block fs-6">{{ $user->is_admin ? 'Admin' : 'User' }}</span>
+                                                                    class="text-dark fw-bolder text-hover-primary d-block fs-6">
+                                                                    <a
+                                                                        class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 {{ $user->is_admin ? 'btn-primary' : 'btn-success' }}">
+                                                                        {{ $user->is_admin ? 'Admin' : 'User' }}
+                                                                    </a></span>
                                                             </div>
                                                         </div>
                                                     </td>

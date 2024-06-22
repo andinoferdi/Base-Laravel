@@ -16,28 +16,34 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // User Page Route
 Route::get('/', function () {
     return view('userpage.index');
-});
+})->name('userpage');
 
 // Dashboard and Protected Routes with Timezone Middleware
-Route::middleware(['auth', 'verified', 'admin', 'timezone'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth', 'admin', 'timezone'])->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('/dashboard/master/satuan', SatuanController::class)->names([
-        'index' => 'satuan',
-        'create' => 'satuan.create',
-        'store' => 'satuan.store',
-        'edit' => 'satuan.edit',
-        'update' => 'satuan.update',
-        'destroy' => 'satuan.destroy',
-    ]);
-Route::resource('/dashboard/master/user', UserController::class)->middleware(['auth', 'verified', 'admin'])->names([
-    'index' => 'user',
-    'create' => 'user.create',
-    'store' => 'user.store',
-    'edit' => 'user.edit',
-    'update' => 'user.update',
-    'destroy' => 'user.destroy', // tambahkan ini
-]);
+        Route::resource('/master/satuan', SatuanController::class)->names([
+            'index' => 'satuan',
+            'create' => 'satuan.create',
+            'store' => 'satuan.store',
+            'edit' => 'satuan.edit',
+            'update' => 'satuan.update',
+            'destroy' => 'satuan.destroy',
+        ]);
 
-    Route::get('/dashboard/master/kecamatan', [KecamatanController::class, 'index'])->name('kecamatan');
+        Route::resource('/master/user', UserController::class)->names([
+            'index' => 'user',
+            'create' => 'user.create',
+            'store' => 'user.store',
+            'edit' => 'user.edit',
+            'update' => 'user.update',
+            'destroy' => 'user.destroy',
+        ]);
+
+        Route::get('/master/kecamatan', [KecamatanController::class, 'index'])->name('kecamatan');
+
+       Route::get('/settings/profile', [DashboardController::class, 'indexsettingsprofile'])->name('profile');
+        Route::put('/settings/profile/{user}', [DashboardController::class, 'updateprofile'])->name('profile.update');
+    });
 });

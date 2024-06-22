@@ -21,7 +21,8 @@
                            <h2>Edit User</h2>
                        </div>
                        <div class="card-body">
-                           <form action="{{ route('user.update', $user->id) }}" method="POST">
+                           <form action="{{ route('user.update', $user->id) }}" method="POST"
+                               enctype="multipart/form-data">
                                @csrf
                                @method('PUT')
                                <div class="row">
@@ -32,14 +33,14 @@
                                    </div>
                                    <div class="col-md-6 form-group">
                                        <label for="email">Email:</label>
-                                       <input type="text" class="form-control" id="email" name="email"
+                                       <input type="email" class="form-control" id="email" name="email"
                                            value="{{ $user->email }}" autocomplete="off">
                                    </div>
                                </div>
                                <div class="row">
                                    <div class="col-md-6 form-group">
                                        <label for="password">Password:</label>
-                                       <input type="text" class="form-control" id="password" name="password"
+                                       <input type="password" class="form-control" id="password" name="password"
                                            autocomplete="off">
                                    </div>
                                    <div class="col-md-6 form-group">
@@ -60,21 +61,74 @@
                                            value="{{ $user->wa }}" autocomplete="off">
                                    </div>
                                </div>
-                               <div class="form-group text-center"
-                                   style="max-width: 400px; margin: 0 auto; margin-top: 20px;">
-                                   <label for="is_admin">Role:</label>
-                                   <select class="form-control" id="is_admin" name="is_admin">
-                                       <option value="0" {{ $user->is_admin == 0 ? 'selected' : '' }}>User</option>
-                                       <option value="1" {{ $user->is_admin == 1 ? 'selected' : '' }}>Admin</option>
-                                   </select>
+                               <div class="row">
+                                   <div class="col-md-6 form-group">
+                                       <label for="foto">Foto:</label>
+                                       <div class="col-lg-8">
+                                           <div class="image-input image-input-outline" data-kt-image-input="true">
+                                               <div class="image-input-wrapper w-125px h-125px"
+                                                   style="background-image: url({{ $user->foto_url ? $user->foto_url : asset('assets/media/avatars/blank.png') }})">
+                                               </div>
+                                               <label
+                                                   class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                   data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                   title="Change avatar">
+                                                   <i class="bi bi-pencil-fill fs-7"></i>
+                                                   <input type="file" name="foto" accept=".png, .jpg, .jpeg" />
+                                                   <input type="hidden" name="avatar_remove" value="0" />
+                                               </label>
+                                               <span
+                                                   class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                   data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                   title="Cancel avatar">
+                                                   <i class="bi bi-x fs-2"></i>
+                                               </span>
+                                               <span
+                                                   class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                   data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                   title="Remove avatar">
+                                                   <i class="bi bi-x fs-2"></i>
+                                               </span>
+                                           </div>
+                                           <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                       </div>
+                                   </div>
+                                   <div class="col-md-6 form-group">
+                                       <label for="is_admin">Role:</label>
+                                       <select class="form-control" id="is_admin" name="is_admin">
+                                           <option value="0" {{ $user->is_admin == 0 ? 'selected' : '' }}>User
+                                           </option>
+                                           <option value="1" {{ $user->is_admin == 1 ? 'selected' : '' }}>Admin
+                                           </option>
+                                       </select>
+                                   </div>
                                </div>
                                <button type="submit" class="btn btn-primary mt-3">
                                    <i class="fa fa-save"></i> Submit
                                </button>
                            </form>
+
                        </div>
                    </div>
                </div>
            </div>
        </div>
+
+       <script>
+           document.addEventListener("DOMContentLoaded", function() {
+               // Get the remove button
+               const removeButton = document.querySelector('[data-kt-image-input-action="remove"]');
+               // Get the hidden input for removing avatar
+               const avatarRemoveInput = document.querySelector('input[name="avatar_remove"]');
+               // Get the image wrapper
+               const imageWrapper = document.querySelector('.image-input-wrapper');
+
+               removeButton.addEventListener("click", function() {
+                   // Set the hidden input value to true
+                   avatarRemoveInput.value = "1";
+                   // Change the preview image to default avatar
+                   imageWrapper.style.backgroundImage = "url('/assets/media/avatars/blank.png')";
+               });
+           });
+       </script>
    @endsection

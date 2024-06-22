@@ -24,6 +24,11 @@ class User extends Authenticatable
 
     public function getFotoUrlAttribute()
     {
-        return $this->foto ? asset('storage/' . $this->foto) : asset('default.png');
+        // Check if user has a foto set
+        if ($this->foto) {
+            return asset('storage/' . $this->foto);
+        } else {
+            return asset('assets/media/avatars/blank.png');
+        }
     }
 }

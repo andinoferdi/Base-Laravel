@@ -97,6 +97,36 @@
                     </a>
                 </div>
 
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->is('dashboard/master/kategori_buku*') ? 'active' : '' }}"
+                        href="/dashboard/master/kategori_buku">
+                        <span class="menu-icon">
+                            <i class="bi bi-shift fs-3"></i>
+                        </span>
+                        <span class="menu-title">Kategori Buku</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->is('dashboard/master/buku*') ? 'active' : '' }}"
+                        href="/dashboard/master/buku">
+                        <span class="menu-icon">
+                            <i class="bi bi-shift fs-3"></i>
+                        </span>
+                        <span class="menu-title">Buku</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->is('dashboard/master/mahasiswa*') ? 'active' : '' }}"
+                        href="/dashboard/master/mahasiswa">
+                        <span class="menu-icon">
+                            <i class="bi bi-shift fs-3"></i>
+                        </span>
+                        <span class="menu-title">Mahasiswa</span>
+                    </a>
+                </div>
+
                 <!-- Aktivitas Section -->
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">

@@ -185,7 +185,7 @@
                                                 </svg>
                                             </span>
                                             <!--end::Svg Icon-->
-                                            <a href="/dashboard/menu/create" class="text-success fw-bold fs-6 mt-2">Create
+                                            <a href="/dashboard/master/menu" class="text-success fw-bold fs-6 mt-2">Create
                                                 Menu</a>
                                         </div>
                                         <!--end::Col-->

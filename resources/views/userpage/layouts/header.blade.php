@@ -53,6 +53,7 @@
                     <a href="/login" class="btn btn-success">Login</a>
                 @endauth
             </div>
+
         </div>
     </div>
 </div>

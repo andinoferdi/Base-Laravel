@@ -10,8 +10,11 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'slug',
-        'icon'
+        'nama_menu',
+        'link_menu',
+        'icon_menu',
+        'parent_id',
+        'create_by',
+        'delete_mark',
     ];
 }

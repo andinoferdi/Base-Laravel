@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class MenuController extends Controller
 {
@@ -18,17 +19,30 @@ class MenuController extends Controller
         return view('dashboard.menu.create');
     }
 
-   public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|unique:menus',
-        'slug' => 'required|unique:menus',
-        'icon' => 'nullable'
-    ]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama_menu' => 'required|unique:menus',
+            'link_menu' => 'required|unique:menus',
+            'icon_menu' => 'nullable',
+            'create_by' => 'required',
+        ]);
 
-    Menu::create($request->all());
-    return redirect()->route('menu')->with('success', 'Menu created successfully.');
-}
+        // Create the menu in the database
+        $menu = Menu::create($request->all());
+
+        // Now, create the folder structure dynamically
+        $menuPath = resource_path("views/dashboard/{$request->link_menu}");
+
+        if (!File::exists($menuPath)) {
+            File::makeDirectory($menuPath, 0755, true);
+
+            // Create a basic index.blade.php file inside the folder
+            File::put("{$menuPath}/index.blade.php", "@extends('layouts.app')\n@section('content')\n<h1>{$request->nama_menu}</h1>\n@endsection");
+        }
+
+        return redirect()->route('menu')->with('success', 'Menu created successfully.');
+    }
 
     public function edit(Menu $menu)
     {
@@ -36,16 +50,16 @@ class MenuController extends Controller
     }
 
     public function update(Request $request, Menu $menu)
-{
-    $request->validate([
-        'name' => 'required|unique:menus,name,' . $menu->id,
-        'slug' => 'required|unique:menus,slug,' . $menu->id,
-        'icon' => 'nullable'
-    ]);
+    {
+        $request->validate([
+            'nama_menu' => 'required|unique:menus,nama_menu,' . $menu->id,
+            'link_menu' => 'required|unique:menus,link_menu,' . $menu->id,
+            'icon_menu' => 'nullable',
+        ]);
 
-    $menu->update($request->all());
-    return redirect()->route('menu')->with('success', 'Menu updated successfully.');
-}
+        $menu->update($request->all());
+        return redirect()->route('menu')->with('success', 'Menu updated successfully.');
+    }
 
     public function destroy(Menu $menu)
     {
@@ -54,13 +68,13 @@ class MenuController extends Controller
     }
 
     public function showDynamicMenu($menu)
-{
-    $viewPath = "dashboard.{$menu}.index";
+    {
+        $viewPath = "dashboard.{$menu}.index";
 
-    if (view()->exists($viewPath)) {
-        return view($viewPath);
-    } else {
-        abort(404, 'Menu not found.');
+        if (view()->exists($viewPath)) {
+            return view($viewPath);
+        } else {
+            abort(404, 'Menu not found.');
+        }
     }
-}
 }

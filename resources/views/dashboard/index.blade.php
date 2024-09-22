@@ -92,9 +92,11 @@
                                                                 <span
                                                                     class="text-dark fw-bolder text-hover-primary d-block fs-6">
                                                                     <a
-                                                                        class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 {{ $user->is_admin ? 'btn-primary' : 'btn-success' }}">
-                                                                        {{ $user->is_admin ? 'Admin' : 'User' }}
-                                                                    </a></span>
+                                                                        class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3
+    {{ $user->jenis_user_id == 1 ? 'btn-primary' : ($user->jenis_user_id == 2 ? 'btn-success' : ($user->jenis_user_id == 3 ? 'btn-warning' : '')) }}">
+                                                                        {{ $user->jenis_user_id == 1 ? 'Admin' : ($user->jenis_user_id == 2 ? 'User' : 'Mahasiswa') }}
+                                                                    </a>
+
                                                             </div>
                                                         </div>
                                                     </td>

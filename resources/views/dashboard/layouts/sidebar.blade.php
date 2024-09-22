@@ -78,6 +78,16 @@
                 </div>
 
                 <div class="menu-item">
+                    <a class="menu-link {{ request()->is('dashboard/master/jenis_user*') ? 'active' : '' }}"
+                        href="/dashboard/master/jenis_user">
+                        <span class="menu-icon">
+                            <i class="bi bi-person fs-3"></i>
+                        </span>
+                        <span class="menu-title">Jenis User</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
                     <a class="menu-link {{ request()->is('dashboard/master/satuan*') ? 'active' : '' }}"
                         href="/dashboard/master/satuan">
                         <span class="menu-icon">

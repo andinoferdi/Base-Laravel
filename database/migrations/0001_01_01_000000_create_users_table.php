@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('status_user')->default(false);
-            $table->boolean(column: 'is_admin')->default(false);
+            $table->foreignId('jenis_user_id')->default(2)->constrained('jenis_users')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

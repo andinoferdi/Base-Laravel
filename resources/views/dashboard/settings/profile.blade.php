@@ -33,8 +33,8 @@
                                             <a
                                                 class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{ auth()->user()->name }}</a>
                                             <a
-                                                class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 {{ auth()->user()->is_admin ? 'btn-primary' : 'btn-success' }}">
-                                                {{ auth()->user()->is_admin ? 'Admin' : 'User' }}
+                                                class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 {{ auth()->user()->jenis_user_id == 1 ? 'btn-primary' : (auth()->user()->jenis_user_id == 2 ? 'btn-success' : 'btn-warning') }}">
+                                                {{ auth()->user()->jenis_user_id == 1 ? 'Admin' : (auth()->user()->jenis_user_id == 2 ? 'User' : 'Mahasiswa') }}
                                             </a>
                                         </div>
                                         <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
@@ -79,7 +79,8 @@
                                     <div class="col-lg-8">
                                         <div class="image-input image-input-outline" data-kt-image-input="true">
                                             <div class="image-input-wrapper w-125px h-125px"
-                                                style="background-image: url({{ auth()->user()->foto_url }})"></div>
+                                                style="background-image: url({{ asset('storage/' . auth()->user()->foto) }})">
+                                            </div>
                                             <label
                                                 class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                                 data-kt-image-input-action="change" data-bs-toggle="tooltip"

@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable, HasFactory;
 
     protected $fillable = [
-         'name', 'email', 'no_hp', 'wa', 'pin', 'password', 'is_admin', 'foto', 'create_by', 'create_date', 'update_by', 'update_date', 'status_user'
+         'name', 'email', 'no_hp', 'wa', 'pin', 'password', 'foto', 'create_by', 'create_date', 'update_by', 'update_date', 'status_user', 'jenis_user_id'
     ];
 
     protected $hidden = [
@@ -22,13 +22,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getFotoUrlAttribute()
+    // Relationship with JenisUser
+    public function jenisUser()
     {
-        // Check if user has a foto set
-        if ($this->foto) {
-            return asset('storage/' . $this->foto);
-        } else {
-            return asset('assets/media/avatars/blank.png');
-        }
+        return $this->belongsTo(JenisUser::class);
     }
 }

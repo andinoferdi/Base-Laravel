@@ -5,6 +5,7 @@ use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\PolosanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JenisUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserActivityController;
 use App\Http\Controllers\ErrorApplicationController;
@@ -50,6 +51,8 @@ Route::middleware(['auth', 'admin', 'timezone', 'log.error'])->group(function ()
             'update' => 'user.update',
             'destroy' => 'user.destroy',
         ])->middleware('log.activity');
+
+        route::resource('/master/jenis_user', JenisUserController::class)->names([    'index' => 'jenis_user',    'create' => 'jenis_user.create',    'store' => 'jenis_user.store',    'edit' => 'jenis_user.edit',    'update' => 'jenis_user.update',    'destroy' => 'jenis_user.destroy',])->middleware('log.activity');
 
         // Kecamatan Route
         Route::get('/master/kecamatan', [KecamatanController::class, 'index'])->name('kecamatan')->middleware('log.activity');

@@ -10,9 +10,11 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->is_admin) {
+        // Allow all authenticated users to access the dashboard
+        if (Auth::check()) {
             return $next($request);
         }
+
         return redirect('/');
     }
 }

@@ -5,25 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserActivity;
 use Illuminate\Http\Request;
+use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+   public function index(Request $request)
+{
+    $activities = UserActivity::with('user')->get();
+    $users = User::all();
+    $menus = Menu::all(); // Tambahkan ini
+    return view('dashboard.index', compact('users', 'activities', 'menus')); // Tambahkan menus ke compact
+}
+   public function indexsettingsprofile(Request $request)
+{
+    $user = Auth::user();
+    $menus = Menu::all(); // Tambahkan ini
+    return view('dashboard.settings.profile', compact('user', 'menus')); // Tambahkan menus ke compact
+}
 
-    {
-        $activities = UserActivity::with('user')->get(); // Mengambil semua data aktivitas beserta data user
-        $users = User::all();
-     return view('dashboard.index', compact('users','activities'));
-    }
-
-     public function indexsettingsprofile(Request $request)
-
-    {
-        $user = Auth::user();
-     return view('dashboard.settings.profile', compact('user'));
-    }
 
 public function updateprofile(Request $request, User $user)
 {

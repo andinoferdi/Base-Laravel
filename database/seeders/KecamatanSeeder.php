@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Kecamatan;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class kecamatanSeeder extends Seeder
+class KecamatanSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,36 +14,42 @@ class kecamatanSeeder extends Seeder
      */
     public function run()
     {
-        Kecamatan::create(['nama_kecamatan' => 'Dukuh Pakis']);
-        Kecamatan::create(['nama_kecamatan' => 'Gayungan']);
-        Kecamatan::create(['nama_kecamatan' => 'Jambangan']);
-        Kecamatan::create(['nama_kecamatan' => 'Karang Pilang']);
-        Kecamatan::create(['nama_kecamatan' => 'Sawahan']);
-        Kecamatan::create(['nama_kecamatan' => 'Wiyung']);
-        Kecamatan::create(['nama_kecamatan' => 'Wonocolo']);
-        Kecamatan::create(['nama_kecamatan' => 'Wonokromo']);
-        Kecamatan::create(['nama_kecamatan' => 'Gubeng']);
-        Kecamatan::create(['nama_kecamatan' => 'Gunung Anyar']);
-        Kecamatan::create(['nama_kecamatan' => 'Mulyorejo']);
-        Kecamatan::create(['nama_kecamatan' => 'Rungkut']);
-        Kecamatan::create(['nama_kecamatan' => 'Sukolilo']);
-        Kecamatan::create(['nama_kecamatan' => 'Tambaksari']);
-        Kecamatan::create(['nama_kecamatan' => 'Tenggilis Mejoyo']);
-        Kecamatan::create(['nama_kecamatan' => 'Bubutan']);
-        Kecamatan::create(['nama_kecamatan' => 'Genteng']);
-        Kecamatan::create(['nama_kecamatan' => 'Simokerto']);
-        Kecamatan::create(['nama_kecamatan' => 'Tegalsari']);
-        Kecamatan::create(['nama_kecamatan' => 'Bulak']);
-        Kecamatan::create(['nama_kecamatan' => 'Kenjeran']);
-        Kecamatan::create(['nama_kecamatan' => 'Krembangan']);
-        Kecamatan::create(['nama_kecamatan' => 'Pabean Cantian']);
-        Kecamatan::create(['nama_kecamatan' => 'Semampir']);
-        Kecamatan::create(['nama_kecamatan' => 'Asemrowo']);
-        Kecamatan::create(['nama_kecamatan' => 'Benowo']);
-        Kecamatan::create(['nama_kecamatan' => 'Lakarsantri']);
-        Kecamatan::create(['nama_kecamatan' => 'Pakal']);
-        Kecamatan::create(['nama_kecamatan' => 'Sambikerep']);
-        Kecamatan::create(['nama_kecamatan' => 'Sukomanunggal']);
-        Kecamatan::create(['nama_kecamatan' => 'Tandes']);
+        // Menghapus semua data di tabel kecamatans sebelum menginsert data baru
+        DB::table('kecamatans')->delete();
+
+        // Menginsert data kecamatan baru
+        DB::table('kecamatans')->insert([
+            ['nama_kecamatan' => 'Dukuh Pakis'],
+            ['nama_kecamatan' => 'Gayungan'],
+            ['nama_kecamatan' => 'Jambangan'],
+            ['nama_kecamatan' => 'Karang Pilang'],
+            ['nama_kecamatan' => 'Sawahan'],
+            ['nama_kecamatan' => 'Wiyung'],
+            ['nama_kecamatan' => 'Wonocolo'],
+            ['nama_kecamatan' => 'Wonokromo'],
+            ['nama_kecamatan' => 'Gubeng'],
+            [ 'nama_kecamatan' => 'Gunung Anyar'],
+            [ 'nama_kecamatan' => 'Mulyorejo'],
+            [ 'nama_kecamatan' => 'Rungkut'],
+            [ 'nama_kecamatan' => 'Sukolilo'],
+            [ 'nama_kecamatan' => 'Tambaksari'],
+            [ 'nama_kecamatan' => 'Tenggilis Mejoyo'],
+            [ 'nama_kecamatan' => 'Bubutan'],
+            [ 'nama_kecamatan' => 'Genteng'],
+            [ 'nama_kecamatan' => 'Simokerto'],
+            [ 'nama_kecamatan' => 'Tegalsari'],
+            [ 'nama_kecamatan' => 'Bulak'],
+            [ 'nama_kecamatan' => 'Kenjeran'],
+            [ 'nama_kecamatan' => 'Krembangan'],
+            [ 'nama_kecamatan' => 'Pabean Cantian'],
+            [ 'nama_kecamatan' => 'Semampir'],
+            [ 'nama_kecamatan' => 'Asemrowo'],
+            [ 'nama_kecamatan' => 'Benowo'],
+            [ 'nama_kecamatan' => 'Lakarsantri'],
+            [ 'nama_kecamatan' => 'Pakal'],
+            [ 'nama_kecamatan' => 'Sambikerep'],
+            [ 'nama_kecamatan' => 'Sukomanunggal'],
+            [ 'nama_kecamatan' => 'Tandes'],
+        ]);
     }
 }

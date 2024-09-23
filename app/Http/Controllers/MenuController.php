@@ -2,79 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use App\Models\Menu;
 
 class MenuController extends Controller
 {
     public function index()
     {
-        $menus = Menu::all();
+        $menus = Menu::orderBy('urutan_menu', 'asc')->get();
         return view('dashboard.menu.index', compact('menus'));
     }
 
     public function create()
-    {
-        return view('dashboard.menu.create');
-    }
+{
+    $nextUrutanMenu = Menu::max('urutan_menu') + 1; // Get the next urutan_menu
+    return view('dashboard.menu.create', compact('nextUrutanMenu'));
+}
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama_menu' => 'required|unique:menus',
-            'link_menu' => 'required|unique:menus',
-            'icon_menu' => 'nullable',
-            'create_by' => 'required',
-        ]);
+   public function store(Request $request)
+{
+    $request->validate([
+        'nama_menu' => 'required|string|max:255',
+        'link_menu' => 'required|string|max:255',
+        'icon_menu' => 'nullable|string|max:255',
+        'status_menu' => 'required|boolean',
+        'urutan_menu' => 'required|integer'
+    ]);
 
-        // Create the menu in the database
-        $menu = Menu::create($request->all());
+    Menu::create($request->all());
 
-        // Now, create the folder structure dynamically
-        $menuPath = resource_path("views/dashboard/{$request->link_menu}");
+    return redirect()->route('menu.index')->with('success', 'Menu berhasil ditambahkan.');
+}
 
-        if (!File::exists($menuPath)) {
-            File::makeDirectory($menuPath, 0755, true);
 
-            // Create a basic index.blade.php file inside the folder
-            File::put("{$menuPath}/index.blade.php", "@extends('layouts.app')\n@section('content')\n<h1>{$request->nama_menu}</h1>\n@endsection");
-        }
+  public function edit(Menu $menu)
+{
+    $menus = Menu::all(); // Get all menus
+    $nextUrutanMenu = Menu::max('urutan_menu') + 1; // Get the next urutan_menu
+    return view('dashboard.menu.edit', compact('menu', 'nextUrutanMenu', 'menus'));
+}
 
-        return redirect()->route('menu')->with('success', 'Menu created successfully.');
-    }
+public function update(Request $request, Menu $menu)
+{
+    // Dump and die untuk melihat semua data request yang masuk
 
-    public function edit(Menu $menu)
-    {
-        return view('dashboard.menu.edit', compact('menu'));
-    }
+    // Validasi
+    $request->validate([
+        'nama_menu' => 'required|string|max:255',
+        'link_menu' => 'required|string|max:255',
+        'icon_menu' => 'nullable|string|max:255',
+        'status_menu' => 'required|boolean',
+        'urutan_menu' => 'required|integer'
+    ]);
 
-    public function update(Request $request, Menu $menu)
-    {
-        $request->validate([
-            'nama_menu' => 'required|unique:menus,nama_menu,' . $menu->id,
-            'link_menu' => 'required|unique:menus,link_menu,' . $menu->id,
-            'icon_menu' => 'nullable',
-        ]);
+    // Proses update
+    $menu->update($request->all());
 
-        $menu->update($request->all());
-        return redirect()->route('menu')->with('success', 'Menu updated successfully.');
-    }
+    return redirect()->route('menu.index')->with('success', 'Menu berhasil diperbarui.');
+}
+
 
     public function destroy(Menu $menu)
     {
         $menu->delete();
-        return redirect()->route('menu')->with('success', 'Menu deleted successfully.');
+
+        return redirect()->route('menu.index')->with('success', 'Menu berhasil dihapus.');
     }
 
-    public function showDynamicMenu($menu)
+    public function showDynamicMenu($link_menu)
     {
-        $viewPath = "dashboard.{$menu}.index";
-
-        if (view()->exists($viewPath)) {
-            return view($viewPath);
-        } else {
-            abort(404, 'Menu not found.');
-        }
+        $menu = Menu::where('link_menu', $link_menu)->firstOrFail();
+        return view('dashboard.menu.show', compact('menu'));
     }
 }

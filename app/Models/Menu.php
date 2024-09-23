@@ -9,12 +9,14 @@ class Menu extends Model
 {
     use HasFactory;
 
+    protected $table = 'menu';
+
     protected $fillable = [
         'nama_menu',
         'link_menu',
         'icon_menu',
-        'parent_id',
-        'create_by',
-        'delete_mark',
+        'status_menu',
+        'urutan_menu'
     ];
+
 }

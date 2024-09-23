@@ -2,6 +2,7 @@
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
     data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <a href="/dashboard">
             <img alt="Logo" src="{{ asset('assets/media/logos/logo-demo13.svg') }}" class="h-15px logo" />
@@ -19,172 +20,19 @@
             </span>
         </div>
     </div>
+
     <div class="aside-menu flex-column-fluid">
         <div class="hover-scroll-overlay-y my-2 py-5 py-lg-8" id="kt_aside_menu_wrapper" data-kt-scroll="true"
             data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto"
             data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu"
             data-kt-scroll-offset="0">
+
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
-                id="#kt_aside_menu" data-kt-menu="true">
+                id="kt_aside_menu" data-kt-menu="true">
 
-                <!-- Dashboard Section -->
                 <div class="menu-item">
-                    <div class="menu-content pb-2">
+                    <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">Dashboard</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard') ? 'active' : '' }}" href="/dashboard">
-                        <span class="menu-icon">
-                            <i class="bi bi-house fs-3"></i>
-                        </span>
-                        <span class="menu-title">Home</span>
-                    </a>
-                </div>
-
-                <!-- Polosan Section -->
-                <div class="menu-item">
-                    <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Polosan</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/polosan*') ? 'active' : '' }}"
-                        href="/dashboard/polosan">
-                        <span class="menu-icon">
-                            <i class="bi bi-tablet fs-3"></i>
-                        </span>
-                        <span class="menu-title">Polosan</span>
-                    </a>
-                </div>
-
-                <!-- Master Section -->
-                <div class="menu-item">
-                    <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Master</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/master/user*') ? 'active' : '' }}"
-                        href="/dashboard/master/user">
-                        <span class="menu-icon">
-                            <i class="bi bi-person fs-3"></i>
-                        </span>
-                        <span class="menu-title">User</span>
-                    </a>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/master/jenis_user*') ? 'active' : '' }}"
-                        href="/dashboard/master/jenis_user">
-                        <span class="menu-icon">
-                            <i class="bi bi-person fs-3"></i>
-                        </span>
-                        <span class="menu-title">Jenis User</span>
-                    </a>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/master/satuan*') ? 'active' : '' }}"
-                        href="/dashboard/master/satuan">
-                        <span class="menu-icon">
-                            <i class="bi bi-shift fs-3"></i>
-                        </span>
-                        <span class="menu-title">Satuan</span>
-                    </a>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/master/kecamatan*') ? 'active' : '' }}"
-                        href="/dashboard/master/kecamatan">
-                        <span class="menu-icon">
-                            <i class="bi bi-justify fs-3"></i>
-                        </span>
-                        <span class="menu-title">Kecamatan</span>
-                    </a>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/master/kategori_buku*') ? 'active' : '' }}"
-                        href="/dashboard/master/kategori_buku">
-                        <span class="menu-icon">
-                            <i class="bi bi-book-fill fs-3"></i>
-                        </span>
-                        <span class="menu-title">Kategori Buku</span>
-                    </a>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/master/buku*') ? 'active' : '' }}"
-                        href="/dashboard/master/buku">
-                        <span class="menu-icon">
-                            <i class="bi bi-book fs-3"></i>
-                        </span>
-                        <span class="menu-title">Buku</span>
-                    </a>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/master/mahasiswa*') ? 'active' : '' }}"
-                        href="/dashboard/master/mahasiswa">
-                        <span class="menu-icon">
-                            <i class="bi bi-collection fs-3"></i>
-                        </span>
-                        <span class="menu-title">Mahasiswa</span>
-                    </a>
-                </div>
-
-                <!-- Aktivitas Section -->
-                <div class="menu-item">
-                    <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Aktivitas</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/aktivitas/user*') ? 'active' : '' }}"
-                        href="/dashboard/aktivitas/user">
-                        <span class="menu-icon">
-                            <i class="bi bi-stopwatch fs-3"></i>
-                        </span>
-                        <span class="menu-title">User</span>
-                    </a>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/aktivitas/error_aplikasi*') ? 'active' : '' }}"
-                        href="/dashboard/aktivitas/error_aplikasi">
-                        <span class="menu-icon">
-                            <i class="bi bi-exclamation-octagon fs-3"></i>
-                        </span>
-                        <span class="menu-title">Error Aplikasi</span>
-                    </a>
-                </div>
-
-                <!-- Settings Section -->
-                <div class="menu-item">
-                    <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Settings</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/settings/profile*') ? 'active' : '' }}"
-                        href="/dashboard/settings/profile">
-                        <span class="menu-icon">
-                            <i class="bi bi-gear fs-3"></i>
-                        </span>
-                        <span class="menu-title">Profile</span>
-                    </a>
-                </div>
-
-                <!-- Dynamic Menus Section -->
-                <div class="menu-item">
-                    <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Dynamic Menus</span>
                     </div>
                 </div>
 
@@ -194,23 +42,23 @@
                         <span class="menu-icon">
                             <i class="bi bi-plus-square fs-3"></i>
                         </span>
-                        <span class="menu-title">Tambah Menu</span>
+                        <span class="menu-title">Menu</span>
                     </a>
                 </div>
 
                 @foreach (App\Models\Menu::all() as $menu)
                     <div class="menu-item">
-                        <a class="menu-link {{ request()->is('dashboard/' . $menu->slug . '*') ? 'active' : '' }}"
-                            href="/dashboard/{{ $menu->slug }}">
+                        <a class="menu-link {{ request()->is('dashboard/' . $menu->link_menu . '*') ? 'active' : '' }}"
+                            href="/dashboard/{{ $menu->link_menu }}">
                             <span class="menu-icon">
-                                <i class="{{ $menu->icon ?? 'bi bi-folder' }} fs-3"></i>
+                                <i class="{{ $menu->icon_menu ?? 'bi bi-folder' }} fs-3"></i>
                             </span>
-                            <span class="menu-title">{{ $menu->name }}</span>
+                            <span class="menu-title">{{ $menu->nama_menu }}</span>
                         </a>
                     </div>
                 @endforeach
-
             </div>
+
         </div>
     </div>
 </div>

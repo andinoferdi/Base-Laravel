@@ -73,15 +73,17 @@ Route::middleware(['auth', 'admin', 'timezone', 'log.error'])->group(function ()
         Route::get('/aktivitas/error_aplikasi', [ErrorApplicationController::class, 'index'])->name('aktivitas.error');
 
         // Menu CRUD routes
-        Route::resource('/master/menu', MenuController::class)->names([
-            'index' => 'menu',
+       Route::resource('/master/menu', MenuController::class)->names([
+            'index' => 'menu.index',
             'create' => 'menu.create',
             'store' => 'menu.store',
             'edit' => 'menu.edit',
             'update' => 'menu.update',
             'destroy' => 'menu.destroy',
         ])->middleware('log.activity');
-        Route::get('/{menu}', [MenuController::class, 'showDynamicMenu'])->name('dynamic.menu');
+
+        // Route for dynamic menu based on 'link_menu'
+        Route::get('/{link_menu}', [MenuController::class, 'showDynamicMenu'])->name('dynamic.menu');
 
         // Buku CRUD routes
         Route::resource('/master/buku', BukuController::class)->names([

@@ -24,7 +24,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Jenis User</th>
-                                        <th>Aksi</th>
+                                        <th scope="col" style="width: 1%; white-space: nowrap; text-align: right;">Aksi
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,14 +33,27 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $jenis_user->nama_jenis_user }}</td>
-                                            <td>
+                                            <td
+                                                style="text-align: right; display: flex; justify-content: flex-end; gap: 10px;">
+                                                <!-- Edit Button -->
                                                 <a href="{{ route('jenis_user.edit', $jenis_user->id) }}"
-                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                                    title="Edit">
+                                                    <span class="svg-icon svg-icon-3">
+                                                        <i class="fa fa-pencil-alt text-info"></i>
+                                                    </span>
+                                                </a>
+                                                <!-- Delete Button -->
                                                 <form action="{{ route('jenis_user.destroy', $jenis_user->id) }}"
-                                                    method="POST" style="display:inline;">
+                                                    method="POST" class="d-inline" title="Delete">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                    <button type="submit"
+                                                        class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
+                                                        <span class="svg-icon svg-icon-3">
+                                                            <i class="fa fa-trash text-danger"></i>
+                                                        </span>
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>

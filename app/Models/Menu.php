@@ -9,14 +9,13 @@ class Menu extends Model
 {
     use HasFactory;
 
-    protected $table = 'menu';
-
     protected $fillable = [
         'nama_menu',
         'link_menu',
         'icon_menu',
-        'status_menu',
-        'urutan_menu'
     ];
-
+    public function settingMenus()
+    {
+        return $this->hasMany(SettingMenu::class, 'menu_id');
+    }
 }

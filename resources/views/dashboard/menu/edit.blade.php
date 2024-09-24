@@ -30,9 +30,9 @@
                                     name="link_menu" value="{{ $menu->link_menu }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="urutan_menu" class="form-label">Urutan Menu</label>
-                                <input type="text" class="form-control" id="urutan_menu" name="urutan_menu"
-                                    value="{{ $menu->urutan_menu }}" readonly>
+                                <label for="icon_menu" class="form-label">Icon</label>
+                                <input type="text" class="form-control" id="icon_menu" name="icon_menu"
+                                    value="{{ $menu->icon_menu }}">
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>

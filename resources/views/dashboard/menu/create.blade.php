@@ -21,23 +21,17 @@
                             <div class="mb-3">
                                 <label for="nama_menu" class="form-label">Nama Menu</label>
                                 <input type="text" class="form-control" id="nama_menu" autocomplete="off"
-                                    name="nama_menu" required>
+                                    name="nama_menu" required value="{{ old('nama_menu') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="link_menu" class="form-label">Nama URL</label>
                                 <input type="text" class="form-control" id="link_menu" autocomplete="off"
-                                    name="link_menu" required>
+                                    name="link_menu" required value="{{ old('link_menu') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="icon_menu" class="form-label">Icon</label>
-                                <input type="text" class="form-control" id="icon_menu" name="icon_menu">
-                            </div>
-                            <div class="mb-3">
-                                <label for="urutan_menu" class="form-label">Urutan Menu</label>
-                                <select class="form-control" id="urutan_menu" name="urutan_menu" required>
-                                    <option value="{{ $nextUrutanMenu }}">{{ $nextUrutanMenu }}</option>
-                                    {{-- Optionally, you can add more options here if needed --}}
-                                </select>
+                                <input type="text" class="form-control" id="icon_menu" name="icon_menu"
+                                    value="{{ old('icon_menu') }}">
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

@@ -3,6 +3,7 @@
     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
     data-kt-drawer-toggle="#kt_aside_mobile_toggle">
 
+    <!-- LOGO -->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <a href="/dashboard">
             <img alt="Logo" src="{{ asset('assets/media/logos/logo-demo13.svg') }}" class="h-15px logo" />
@@ -21,13 +22,15 @@
         </div>
     </div>
 
+    <!-- MENU -->
     <div class="aside-menu flex-column-fluid">
         <div class="hover-scroll-overlay-y my-2 py-5 py-lg-8" id="kt_aside_menu_wrapper" data-kt-scroll="true"
             data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto"
             data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu"
             data-kt-scroll-offset="0">
 
-            <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
+            <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary
+                menu-state-bullet-primary menu-arrow-gray-500"
                 id="kt_aside_menu" data-kt-menu="true">
 
                 <div class="menu-item">
@@ -36,17 +39,14 @@
                     </div>
                 </div>
 
-                <div class="menu-item">
-                    <a class="menu-link {{ request()->is('dashboard/master/menu*') ? 'active' : '' }}"
-                        href="/dashboard/master/menu">
-                        <span class="menu-icon">
-                            <i class="bi bi-plus-square fs-3"></i>
-                        </span>
-                        <span class="menu-title">Menu</span>
-                    </a>
-                </div>
+                @php
+                    $jenis_user_id = auth()->user()->jenis_user_id;
 
-                @foreach (App\Models\Menu::all() as $menu)
+                    $menus = App\Models\Menu::whereHas('settingMenus', function ($query) use ($jenis_user_id) {
+                        $query->where('jenis_user_id', $jenis_user_id);
+                    })->get();
+                @endphp
+                @foreach ($menus as $menu)
                     <div class="menu-item">
                         <a class="menu-link {{ request()->is('dashboard/' . $menu->link_menu . '*') ? 'active' : '' }}"
                             href="/dashboard/{{ $menu->link_menu }}">

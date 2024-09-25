@@ -22,7 +22,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Relationship with JenisUser
     public function jenisUser()
     {
         return $this->belongsTo(JenisUser::class);

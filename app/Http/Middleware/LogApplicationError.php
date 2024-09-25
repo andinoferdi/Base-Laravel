@@ -28,7 +28,7 @@ class LogApplicationError
             'error_message' => $e->getMessage(),
             'status' => '1',
         ]);
-        throw $e; // re-throw the exception after logging
+        throw $e;
     }
 }
 }

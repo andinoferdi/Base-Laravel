@@ -14,16 +14,14 @@ class SettingMenuSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('setting_menus')->truncate(); // Clear the table
+        DB::table('setting_menus')->truncate();
 
-        // Define menu IDs for each jenis_user_id
         $menuAssignments = [
-            1 => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // Admin
-            2 => [1, 5, 6, 7, 9, 10, 11],                // User
-            3 => [1, 5, 6, 7, 9, 10, 11],                // Mahasiswa
+            1 => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            2 => [1, 5, 6, 7, 9, 10, 11],
+            3 => [1, 5, 6, 7, 9, 10, 11],
         ];
 
-        // Insert menu settings
         foreach ($menuAssignments as $jenis_user_id => $menu_ids) {
             foreach ($menu_ids as $menu_id) {
                 DB::table('setting_menus')->insert([

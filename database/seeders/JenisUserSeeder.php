@@ -17,9 +17,9 @@ class JenisUserSeeder extends Seeder
         DB::table('jenis_users')->delete();
 
         DB::table('jenis_users')->insert([
-            ['id' => 1, 'nama_jenis_user' => 'admin'],
-            ['id' => 2, 'nama_jenis_user' => 'user'],
-            ['id' => 3, 'nama_jenis_user' => 'mahasiswa'],
+            [ 'nama_jenis_user' => 'admin'],
+            [ 'nama_jenis_user' => 'user'],
+            [ 'nama_jenis_user' => 'mahasiswa'],
         ]);
     }
 }

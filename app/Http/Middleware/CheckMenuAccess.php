@@ -20,16 +20,13 @@ class CheckMenuAccess
     {
         $user = Auth::user();
 
-        // Get the menu_id from the current route
         $menuId = $this->getMenuIdFromRoute($request);
 
         if ($menuId) {
-            // Check if the user has access to the menu based on menu_id
             $hasAccess = SettingMenu::where('jenis_user_id', $user->jenis_user_id)
                 ->where('menu_id', $menuId)
                 ->exists();
 
-            // If access is denied, redirect or abort
             if (!$hasAccess) {
                 return redirect()->route('dashboard')->with('error', 'You do not have access to this menu.');
             }
@@ -40,20 +37,20 @@ class CheckMenuAccess
 
     private function getMenuIdFromRoute(Request $request)
     {
-        // Define your route to menu_id mapping based on MenuSeeder
+
         $routeMenuMapping = [
-            'menu.index' => 1, // Menu
-            'setting_menus.index' => 2, // Setting Menu
-            'users.index' => 3, // User
-            'jenis_user.index' => 4, // Jenis User
-            'satuan.index' => 5, // Satuan
-            'kecamatan.index' => 6, // Kecamatan
-            'kategori_buku.index' => 7, // Kategori Buku
-            'buku.index' => 8, // Buku
-            'mahasiswa.index' => 9, // Mahasiswa
-            'aktivitas.user.index' => 10, // Aktivitas User
-            'aktivitas.error_aplikasi.index' => 11, // Error Aplikasi
-            'settings.profile.index' => 12, // Profile
+            'menu.index' => 1,
+            'setting_menus.index' => 2,
+            'users.index' => 3,
+            'jenis_user.index' => 4,
+            'satuan.index' => 5,
+            'kecamatan.index' => 6,
+            'kategori_buku.index' => 7,
+            'buku.index' => 8,
+            'mahasiswa.index' => 9,
+            'aktivitas.user.index' => 10,
+            'aktivitas.error_aplikasi.index' => 11,
+            'settings.profile.index' => 12,
         ];
 
         $routeName = $request->route()->getName();

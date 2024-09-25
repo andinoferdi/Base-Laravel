@@ -20,7 +20,7 @@
                             <div class="form-group">
                                 <label for="nama_jenis_user">Nama Jenis User:</label>
                                 <input type="text" class="form-control" id="nama_jenis_user" name="nama_jenis_user"
-                                    required>
+                                    required autocomplete="off">
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">Submit</button>
                         </form>

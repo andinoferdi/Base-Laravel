@@ -26,37 +26,55 @@
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="name">Nama User:</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        id="name" name="name" autocomplete="off" value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        autocomplete="off">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        id="email" name="email" autocomplete="off" value="{{ old('email') }}">
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="password">Password:</label>
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        autocomplete="off">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password" name="password" autocomplete="off">
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="no_hp">No HP:</label>
-                                    <input type="text" class="form-control" id="no_hp" name="no_hp"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control @error('no_hp') is-invalid @enderror"
+                                        id="no_hp" name="no_hp" autocomplete="off" value="{{ old('no_hp') }}">
+                                    @error('no_hp')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="pin">PIN:</label>
-                                    <input type="text" class="form-control" id="pin" name="pin"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control @error('pin') is-invalid @enderror"
+                                        id="pin" name="pin" autocomplete="off" value="{{ old('pin') }}">
+                                    @error('pin')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="wa">Whatsapp:</label>
-                                    <input type="text" class="form-control" id="wa" name="wa"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control @error('wa') is-invalid @enderror"
+                                        id="wa" name="wa" autocomplete="off" value="{{ old('wa') }}">
+                                    @error('wa')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -93,11 +111,18 @@
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="jenis_user_id">Role:</label>
-                                    <select class="form-control" id="jenis_user_id" name="jenis_user_id">
-                                        <option value="2">User</option>
-                                        <option value="1">Admin</option>
-                                        <option value="3">Mahasiswa</option>
+                                    <select class="form-control @error('jenis_user_id') is-invalid @enderror"
+                                        id="jenis_user_id" name="jenis_user_id">
+                                        <option value="">Pilih Role</option>
+                                        @foreach ($jenis_user as $jenis_user)
+                                            <option value="{{ $jenis_user->id }}"
+                                                {{ old('jenis_user_id') == $jenis_user->id ? 'selected' : '' }}>
+                                                {{ $jenis_user->nama_jenis_user }}</option>
+                                        @endforeach
                                     </select>
+                                    @error('jenis_user_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">

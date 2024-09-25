@@ -32,10 +32,33 @@
                                         <div class="d-flex align-items-center mb-2">
                                             <a
                                                 class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{ auth()->user()->name }}</a>
-                                            <a
-                                                class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3 {{ auth()->user()->jenis_user_id == 1 ? 'btn-primary' : (auth()->user()->jenis_user_id == 2 ? 'btn-success' : 'btn-warning') }}">
-                                                {{ auth()->user()->jenis_user_id == 1 ? 'Admin' : (auth()->user()->jenis_user_id == 2 ? 'User' : 'Mahasiswa') }}
-                                            </a>
+                                            <span class="text-dark fw-bolder text-hover-primary d-block fs-6">
+                                                <a
+                                                    class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3
+                                            {{ auth()->user()->jenis_user_id == 1
+                                                ? 'btn-primary'
+                                                : (auth()->user()->jenis_user_id == 2
+                                                    ? 'btn-success'
+                                                    : (auth()->user()->jenis_user_id == 3
+                                                        ? 'btn-warning'
+                                                        : (auth()->user()->jenis_user_id == 4
+                                                            ? 'btn-danger'
+                                                            : (auth()->user()->jenis_user_id == 5
+                                                                ? 'btn-secondary'
+                                                                : '')))) }}">
+                                                    {{ auth()->user()->jenis_user_id == 1
+                                                        ? 'Admin'
+                                                        : (auth()->user()->jenis_user_id == 2
+                                                            ? 'User'
+                                                            : (auth()->user()->jenis_user_id == 3
+                                                                ? 'Mahasiswa'
+                                                                : (auth()->user()->jenis_user_id == 4
+                                                                    ? auth()->user()->jenisUser->nama_jenis_user
+                                                                    : (auth()->user()->jenis_user_id == 5
+                                                                        ? auth()->user()->jenisUser->nama_jenis_user
+                                                                        : 'Tidak Ada')))) }}
+                                                </a>
+                                            </span>
                                         </div>
                                         <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
                                             <a href="#"

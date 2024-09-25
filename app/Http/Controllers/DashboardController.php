@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserActivity;
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\JenisUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,13 +16,14 @@ class DashboardController extends Controller
 {
     $activities = UserActivity::with('user')->get();
     $users = User::all();
-    $menus = Menu::all(); // Tambahkan ini
-    return view('dashboard.index', compact('users', 'activities', 'menus')); // Tambahkan menus ke compact
+    $menus = Menu::all();
+    $jenis_user = JenisUser::all();
+    return view('dashboard.index', compact('users', 'activities', 'menus','jenis_user')); // Tambahkan menus ke compact
 }
    public function indexsettingsprofile(Request $request)
 {
     $user = Auth::user();
-    $menus = Menu::all(); // Tambahkan ini
+    $menus = Menu::all();
     return view('dashboard.settings.profile', compact('user', 'menus')); // Tambahkan menus ke compact
 }
 
@@ -37,7 +39,7 @@ public function updateprofile(Request $request, User $user)
         'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
-    $fotoPath = $user->foto; // Default to current foto
+    $fotoPath = $user->foto;
 
     if ($request->has('avatar_remove') && $request->avatar_remove == "1") {
         if ($user->foto) {

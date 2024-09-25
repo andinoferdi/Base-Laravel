@@ -11,7 +11,6 @@ class JenisUser extends Model
 
     protected $fillable = ['nama_jenis_user'];
 
-    // Relationship with User
     public function users()
     {
         return $this->hasMany(User::class);

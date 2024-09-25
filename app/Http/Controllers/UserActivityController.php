@@ -27,16 +27,13 @@ class UserActivityController extends Controller
 
     public function logActivity($description, $status)
     {
-        $userId = Auth::id(); // Mendapatkan ID pengguna yang sedang login
+        $userId = Auth::id();
         self::logActivityStatic($userId, $description, $status);
     }
 
     public function someAction(Request $request)
     {
-        // Logika untuk aksi tertentu
-        // ...
 
-        // Catat aktivitas pengguna
         $this->logActivity('User melakukan aksi tertentu', 'A');
         return response()->json(['message' => 'Aksi berhasil dicatat.']);
     }

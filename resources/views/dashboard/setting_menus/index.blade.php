@@ -19,6 +19,9 @@
                         <h2>Daftar Pengaturan Menu</h2>
                     </div>
                     <div class="card-body">
+                        <a href="{{ route('setting_menus.create') }}" class="btn btn-primary">
+                            <i class="fa fa-plus"></i> Tambah Pengaturan Menu
+                        </a>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
@@ -29,75 +32,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Admin</td>
-                                        <td style="text-align: right;">
-                                            <a href="{{ route('setting_menus.edit', 1) }}"
-                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-                                                title="Edit">
-                                                <span class="svg-icon svg-icon-3">
-                                                    <i class="fa fa-pencil-alt text-info"></i>
-                                                </span>
-                                            </a>
-                                            <form action="{{ route('setting_menus.destroy', 1) }}" method="POST"
-                                                class="d-inline" title="Delete">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
+                                    @foreach ($jenis_user as $user)
+                                        <!-- Sesuaikan nama variabel dengan yang ada di controller -->
+                                        <tr>
+                                            <td>{{ $user->nama_jenis_user }}</td>
+                                            <td style="text-align: right;">
+                                                <a href="{{ route('setting_menus.edit', $user->id) }}"
+                                                    class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                                                    title="Edit">
                                                     <span class="svg-icon svg-icon-3">
-                                                        <i class="fa fa-trash text-danger"></i>
+                                                        <i class="fa fa-pencil-alt text-info"></i>
                                                     </span>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>User</td>
-                                        <td style="text-align: right;">
-                                            <a href="{{ route('setting_menus.edit', 2) }}"
-                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-                                                title="Edit">
-                                                <span class="svg-icon svg-icon-3">
-                                                    <i class="fa fa-pencil-alt text-info"></i>
-                                                </span>
-                                            </a>
-                                            <form action="{{ route('setting_menus.destroy', 2) }}" method="POST"
-                                                class="d-inline" title="Delete">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
-                                                    <span class="svg-icon svg-icon-3">
-                                                        <i class="fa fa-trash text-danger"></i>
-                                                    </span>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mahasiswa</td>
-                                        <td style="text-align: right;">
-                                            <a href="{{ route('setting_menus.edit', 3) }}"
-                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-                                                title="Edit">
-                                                <span class="svg-icon svg-icon-3">
-                                                    <i class="fa fa-pencil-alt text-info"></i>
-                                                </span>
-                                            </a>
-                                            <form action="{{ route('setting_menus.destroy', 3) }}" method="POST"
-                                                class="d-inline" title="Delete">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
-                                                    <span class="svg-icon svg-icon-3">
-                                                        <i class="fa fa-trash text-danger"></i>
-                                                    </span>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

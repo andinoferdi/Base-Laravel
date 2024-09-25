@@ -21,11 +21,10 @@ class TrackUserStatus
             $user = Auth::user();
 
             if ($user instanceof User) {
-                $user->status_user = true; // Set status_user ke true
+                $user->status_user = true;
                 $user->update_date = now();
-                $user->save(); // Simpan perubahan
+                $user->save();
             } else {
-                // Log jika tidak sesuai dengan ekspektasi
                 Log::error('User instance is not valid User model.');
             }
         }

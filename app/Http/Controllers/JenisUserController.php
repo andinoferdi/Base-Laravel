@@ -26,8 +26,7 @@ class JenisUserController extends Controller
 
         JenisUser::create($request->all());
 
-        return redirect()->route('jenis_user')
-            ->with('success', 'Jenis User created successfully.');
+        return redirect()->route('jenis_user.index');
     }
 
     public function edit(JenisUser $jenis_user)
@@ -43,15 +42,12 @@ class JenisUserController extends Controller
 
         $jenis_user->update($request->all());
 
-        return redirect()->route('jenis_user')
-            ->with('success', 'Jenis User updated successfully.');
+        return redirect()->route('jenis_user.index');
     }
 
     public function destroy(JenisUser $jenis_user)
     {
         $jenis_user->delete();
-
-        return redirect()->route('jenis_user')
-            ->with('success', 'Jenis User deleted successfully.');
+        return redirect()->route('jenis_user.index');
     }
 }

@@ -57,11 +57,24 @@
                                             <td>{{ $user->update_by }}</td>
                                             <td>{{ $user->update_date }}</td>
                                             <td>
-                                                <span
-                                                    class="badge
-                                                    {{ $user->jenis_user_id == 1 ? 'bg-primary' : ($user->jenis_user_id == 2 ? 'bg-success' : 'bg-warning') }}">
-                                                    {{ $user->jenis_user_id == 1 ? 'Admin' : ($user->jenis_user_id == 2 ? 'User' : 'Mahasiswa') }}
+                                                <span class="text-dark fw-bolder text-hover-primary d-block fs-6">
+                                                    <a
+                                                        class="btn btn-sm fw-bolder ms-2 fs-8 py-1 px-3
+                                                    {{ $user->jenis_user_id == 1
+                                                        ? 'btn-primary'
+                                                        : ($user->jenis_user_id == 2
+                                                            ? 'btn-success'
+                                                            : ($user->jenis_user_id == 3
+                                                                ? 'btn-warning'
+                                                                : ($user->jenis_user_id == 4
+                                                                    ? 'btn-danger'
+                                                                    : ($user->jenis_user_id == 5
+                                                                        ? 'btn-secondary'
+                                                                        : '')))) }}">
+                                                        {{ $user->jenisUser->nama_jenis_user ?? 'Tidak Ada' }}
+                                                    </a>
                                                 </span>
+
                                             </td>
                                             <td
                                                 style="text-align: right; display: flex; justify-content: flex-end; gap: 10px;">

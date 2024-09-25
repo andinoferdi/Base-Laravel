@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\JenisUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,21 +20,22 @@ class UserController extends Controller
     public function create()
     {
         $user = Auth::user();
-        return view('dashboard.user.create', compact('user'));
+        $jenis_user = JenisUser::all();
+        return view('dashboard.user.create', compact('user','jenis_user'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'no_hp' => 'nullable|string|max:15',
-            'wa' => 'nullable|string|max:15',
-            'pin' => 'nullable|string|max:6',
-            'password' => 'required|string|min:8',
-            'jenis_user_id' => 'required|in:1,2,3', // 1: Admin, 2: User, 3: Mahasiswa
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+       $request->validate([
+    'name' => 'required',
+    'email' => 'required|email|unique:users,email,' . ($user->id ?? ''),
+    'no_hp' => 'nullable|string|max:15',
+    'wa' => 'nullable|string|max:15',
+    'pin' => 'nullable|string|max:6',
+    'password' => 'required|string|min:8',
+    'jenis_user_id' => 'required|exists:jenis_users,id',
+    'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+]);
 
         $fotoPath = $request->file('foto') ? $request->file('foto')->store('fotos', 'public') : 'assets/media/avatars/blank.png';
 
@@ -50,30 +52,31 @@ class UserController extends Controller
 
         $user->create_by = auth()->user() ? auth()->user()->name : 'system';
         $user->create_date = now('Asia/Jakarta');
-        $user->status_user = false; // default value for status_user
+        $user->status_user = false;
         $user->save();
 
-        return redirect()->route('user')
+        return redirect()->route('user.index')
             ->with('success', 'User created successfully.');
     }
 
     public function edit(User $user)
     {
-        return view('dashboard.user.edit', compact('user'));
+        $jenis_user = JenisUser::all();
+        return view('dashboard.user.edit', compact('user' ,'jenis_user'));
     }
 
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'no_hp' => 'nullable|string|max:15',
-            'wa' => 'nullable|string|max:15',
-            'pin' => 'nullable|string|max:6',
-            'password' => 'nullable|string|min:8',
-            'jenis_user_id' => 'required|in:1,2,3',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+       $request->validate([
+    'name' => 'required',
+    'email' => 'required|email|unique:users,email,' . ($user->id ?? ''),
+    'no_hp' => 'nullable|string|max:15',
+    'wa' => 'nullable|string|max:15',
+    'pin' => 'nullable|string|max:6',
+    'password' => 'required|string|min:8',
+    'jenis_user_id' => 'required|exists:jenis_users,id',
+    'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+]);
 
         if ($request->has('avatar_remove') && $request->avatar_remove == "1") {
             if ($user->foto) {
@@ -101,7 +104,7 @@ class UserController extends Controller
             'update_date' => now('Asia/Jakarta'),
         ]);
 
-        return redirect()->route('user')
+        return redirect()->route('user.index')
             ->with('success', 'User updated successfully.');
     }
 
@@ -111,7 +114,7 @@ class UserController extends Controller
             Storage::disk('public')->delete($user->foto);
         }
         $user->delete();
-        return redirect()->route('user')
+        return redirect()->route('user.index')
             ->with('success', 'User deleted successfully.');
     }
 }

@@ -33,10 +33,6 @@ class SatuanController extends Controller
             ->with('success', 'Satuan created successfully.');
     }
 
-    // public function show(Satuan $satuan)
-    // {
-    //     return view('satuans.show',compact('satuan'));
-    // }
 
     public function edit(Satuan $satuan)
     {
